@@ -69,7 +69,7 @@
     <section class="navigation">
         <header>
             <div class="header-content">
-                <div class="logo"><a href="#"><img src="img/logo.png" alt="Logo"></a></div>
+                <!-- <div class="logo"><a href="#"><img src="img/logo.png" alt="Logo"></a></div> -->
                 <div class="header-nav">
                     <nav>
                         <ul class="primary-nav">
@@ -96,18 +96,20 @@
             <div class="col-md-10 col-md-offset-1">
                 <div class="hero-content text-center">
                     <!--<h1>Ram and Antara</h1>-->
-                    <img src="img/logo-lg.png">
+                    <img src="img/GandR_Logo.png"  style="
+                width: 100%;
+                height: 100%;">
                     <!--<p class="intro">Ram & Antara are getting hitched!</p>-->
                     <!--<a href="#" class="btn btn-fill btn-large btn-margin-right">Scroll Down</a> -->
                 </div>
             </div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-sm-4 hidden-xs"></div>
             <div class="col-sm-4 hidden-xs text-center"><a href="#rsvp"
                                                            class="btn btn-accent btn-large rsvp-btn">RSVP</a></div>
             <div class="col-sm-4 hidden-xs"></div>
-        </div>
+        </div> -->
     </div>
     <div class="down-arrow floating-arrow"><a href="#invitation"><i class="fa fa-angle-down"></i></a></div>
 </section>
@@ -366,8 +368,8 @@
          data-property="{videoURL:'https://youtu.be/9giqL1H6yRs',containment:'#video-bg',autoPlay:true, mute:true, showControls:false, startAt:80, stopAt:259, opacity:1}">
     </div>
     <div id="video-content">
-        <h5>Kolkata</h5>
-        <p>City of joy</p>
+        <h5>Tagaytay</h5>
+        <p>Second Summer Capital of the Philippines</p>
     </div>
 </section>
 
@@ -388,11 +390,11 @@
                 <div id="map-content" class="pointer-events-auto">
                     <div class="row">
                         <div class="col-md-6">
-                            <h5>ITC Fortune Park</h5>
-                            <p>Kona Expressway, Howrah, West Bengal 711403, India</p>
+                            <h5>Tagaytay</h5>
+                            <p>Tagaytay Philippines</p>
                         </div>
                         <div class="col-md-6">
-                            <h5>Mr. Amit Roy</h5>
+                            <h5>Mr. Angelo Cortez</h5>
                             <p><i class="fa fa-mobile"></i> <a href="tel://+919412345678">+91 9412345678</a><br>
                                 <i class="fa fa-mobile"></i> <a href="tel://+917123456789">+91 7123456789</a></p>
                         </div>
@@ -401,7 +403,7 @@
                         <div class="col-md-6" style="padding: 5px;">
                             <a class="btn btn-fill btn-small"
                                href="https://m.uber.com/ul/?action=setPickup&client_id=Yh7Dl6SjB56RY2JuuZF8ttVa6ryFV78W&pickup=my_location&dropoff[formatted_address]=Fortune%20Park%20Panchwati%20-%20Hotels%20in%20Kolkata%2C%20Howrah%2C%20West%20Bengal%2C%20India&dropoff[latitude]=22.593276&dropoff[longitude]=88.270277"><i
-                                    class="fa fa-taxi"></i>&nbsp;&nbsp;Book Uber</a>
+                                    class="fa fa-taxi"></i>&nbsp;Book Grab</a>
                         </div>
                         <div class="col-md-6" style="padding: 5px;">
                             <a class="btn btn-accent btn-small" id="btn-show-map"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Show
@@ -436,7 +438,7 @@
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <h3>What are you waiting for?</h3>
-                <p>We would greatly appreciate if you could RSVP before 1st of November '17</p>
+                <p>We would greatly appreciate if you could RSVP before 1st of December 2025</p>
                 <form id="rsvp-form" class="rsvp-form"
                       action=""
                       method="POST">
@@ -522,6 +524,39 @@
     })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
     ga('create', 'UA-46465113-4', 'auto');
     ga('send', 'pageview');
+
+
+/********************** RSVP **********************/
+$('#rsvp-form').on('submit', function (e) {
+    e.preventDefault();
+    var data = $(this).serialize();
+
+    $('#alert-wrapper').html(alert_markup('info', '<strong>Just a sec!</strong> We are saving your details.'));
+
+    if (MD5($('#invite_code').val()) !== 'b0e53b10c1f55ede516b240036b88f40'
+        && MD5($('#invite_code').val()) !== '2ac7f43695eb0479d5846bb38eec59cc') {
+        $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> Your invite code is incorrect.'));
+    } else {
+        $.post('https://script.google.com/macros/s/AKfycbygJUpGUAxJ39jp_j2on-WeSUIP1jRa7u-IhL0ZSev54xTplL9kvD-8LYY4DrxGZDkqLg/exec', data)
+            .done(function (data) {
+                console.log(data);
+                if (data.result === "error") {
+                    $('#alert-wrapper').html(alert_markup('danger', data.message));
+                } else {
+                    $('#alert-wrapper').html('');
+                    $('#rsvp-modal').modal('show');
+                }
+            })
+            .fail(function (data) {
+                console.log(data);
+                $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> There is some issue with the server. '));
+            });
+    }
+});
+
+
+
+
 </script>
 </body>
 </html>
