@@ -72,6 +72,10 @@
     Your browser does not support the audio element.
 </audio>
 
+<div id="music-overlay">
+    <button id="play-music">💖 Click to Play Music</button>
+</div>
+
 <section class="hero">
     <section class="navigation">
         <header>
@@ -622,6 +626,13 @@ $('#rsvp-form').on('submit', function (e) {
     $(function(){
         $("#bgndVideo").YTPlayer();
     });
+
+document.getElementById('play-music').addEventListener('click', function() {
+    let music = document.getElementById('bg-music');
+    music.muted = false;
+    music.play();
+    document.getElementById('music-overlay').style.display = 'none';
+});
 
 
 </script>
