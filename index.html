@@ -549,7 +549,7 @@
                         </div>
                         <div class="col-md-6 col-sm-6">
                             <div class="form-input-group">
-                                <i class="fa fa-key"></i><input type="number" name="invite_code" id="invite_code"
+                                <i class="fa fa-key"></i><input type="text" name="invite_code" id="invite_code"
                                                                 class="" min="0"
                                                                 placeholder="Invite code"
                                                                 required>
@@ -590,7 +590,7 @@
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlPw3GQYI3faa_9mRE6plWuM7xNEmrwH0&callback=initMap"></script>
 <!-- Google Analytics -->
-<script>
+<script  >
     (function (i, s, o, g, r, a, m) {
         i['GoogleAnalyticsObject'] = r;
         i[r] = i[r] || function () {
@@ -606,33 +606,40 @@
     ga('send', 'pageview');
 
 
+
+
+
 /********************** RSVP **********************/
 $('#rsvp-form').on('submit', function (e) {
     e.preventDefault();
+
+    // ✅ Capture the invite code (optional but handy for debugging)
+    var inviteCode = $('#invite_code').val().trim();
+    console.log("Invite Code Entered:", inviteCode); // Debug log
+
+    // Serialize all form fields (including invite_code) for POST
     var data = $(this).serialize();
 
+    // Show "saving" message
     $('#alert-wrapper').html(alert_markup('info', '<strong>Just a sec!</strong> We are saving your details.'));
 
-    if (MD5($('#invite_code').val()) !== 'b0e53b10c1f55ede516b240036b88f40'
-        && MD5($('#invite_code').val()) !== '2ac7f43695eb0479d5846bb38eec59cc') {
-        $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> Your invite code is incorrect.'));
-    } else {
-        $.post('https://script.google.com/macros/s/AKfycbygJUpGUAxJ39jp_j2on-WeSUIP1jRa7u-IhL0ZSev54xTplL9kvD-8LYY4DrxGZDkqLg/exec', data)
-            .done(function (data) {
-                console.log(data);
-                if (data.result === "error") {
-                    $('#alert-wrapper').html(alert_markup('danger', data.message));
-                } else {
-                    $('#alert-wrapper').html('');
-                    $('#rsvp-modal').modal('show');
-                }
-            })
-            .fail(function (data) {
-                console.log(data);
-                $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> There is some issue with the server. '));
-            });
-    }
+    // ✅ Send data to Google Apps Script — server will validate invite code
+    $.post('https://script.google.com/macros/s/AKfycbygJUpGUAxJ39jp_j2on-WeSUIP1jRa7u-IhL0ZSev54xTplL9kvD-8LYY4DrxGZDkqLg/exec', data)
+        .done(function (response) {
+            console.log("Server Response:", response);
+            
+            if (response.result === "error") {
+                $('#alert-wrapper').html(alert_markup('danger', response.message));
+            } else {
+                $('#alert-wrapper').html('');
+                $('#rsvp-modal').modal('show');
+            }
+        })
+        .fail(function () {
+            $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> There is some issue with the server.'));
+        });
 });
+
 
 
     $(function(){
