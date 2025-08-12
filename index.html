@@ -72,8 +72,16 @@
     Your browser does not support the audio element.
 </audio>
 
-<div id="music-overlay">
+<!-- <div id="music-overlay">
     <button id="play-music">💖 Click to Play Music</button>
+</div> -->
+
+<!-- Welcome Popup -->
+<div id="welcome-popup">
+  <div id="welcome-popup-content">
+    <p>Thank you for taking the time to be part of our special day.</p>
+    <button id="play-music">Let's Celebrate!</button>
+  </div>
 </div>
 
 <section class="hero">
@@ -107,22 +115,26 @@
             <div class="col-md-10 col-md-offset-1">
                 <div class="hero-content text-center">
                     <!--<h1>Ram and Antara</h1>-->
-                    <img src="img/GandR_Logo.png"  style="
+                    <!-- <img src="img/GandR_Logo.png"  style="
                 width: 40%;
-                height: 30%">
+                height: 30%"> -->
                     <!--<p class="intro">Ram & Antara are getting hitched!</p>-->
                     <!--<a href="#" class="btn btn-fill btn-large btn-margin-right">Scroll Down</a> -->
+                   
+                    <a href="#rsvp" class="btn btn-accent btn-large rsvp-btn">RSVP</a>
+                      <div class="down-arrow floating-arrow"><a href="#invitation"><i class="fa fa-angle-down"></i></a></div>
                 </div>
+                
             </div>
+            
         </div>
         <!-- <div class="row">
             <div class="col-sm-4 hidden-xs"></div>
-            <div class="col-sm-4 hidden-xs text-center"><a href="#rsvp"
-                                                           class="btn btn-accent btn-large rsvp-btn">RSVP</a></div>
+            <div class="col-sm-4 hidden-xs text-center"><a href="#rsvp" class="btn btn-accent btn-large rsvp-btn">RSVP</a></div>
             <div class="col-sm-4 hidden-xs"></div>
         </div> -->
     </div>
-    <div class="down-arrow floating-arrow"><a href="#invitation"><i class="fa fa-angle-down"></i></a></div>
+    <!-- <div class="down-arrow floating-arrow"><a href="#invitation"><i class="fa fa-angle-down"></i></a></div> -->
 </section>
 
 <section id="invitation" class="section-padding">
@@ -627,12 +639,20 @@ $('#rsvp-form').on('submit', function (e) {
         $("#bgndVideo").YTPlayer();
     });
 
+const popup = document.getElementById('welcome-popup');
+  const closeBtn = document.getElementById('close-popup');
+  const music = document.getElementById('bg-music');
+
+
 document.getElementById('play-music').addEventListener('click', function() {
     let music = document.getElementById('bg-music');
+    popup.style.display = 'none';
     music.muted = false;
     music.play();
     document.getElementById('music-overlay').style.display = 'none';
 });
+
+
 
 
 </script>
