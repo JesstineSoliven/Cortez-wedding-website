@@ -206,6 +206,36 @@ $(document).ready(function () {
 
     $('#add-to-cal').html(myCalendar);
 
+/********************** RSVP **********************/
+$('#rsvp-form').on('submit', function (e) {
+    e.preventDefault();
+
+    // ✅ Capture the invite code (optional but handy for debugging)
+    var inviteCode = $('#invite_code').val().trim();
+    console.log("Invite Code Entered:", inviteCode); // Debug log
+
+    // Serialize all form fields (including invite_code) for POST
+    var data = $(this).serialize();
+
+    // Show "saving" message
+    $('#alert-wrapper').html(alert_markup('info', '<strong>Just a sec!</strong> We are saving your details.'));
+
+    // ✅ Send data to Google Apps Script — server will validate invite code
+    $.post('https://script.google.com/macros/s/AKfycbygJUpGUAxJ39jp_j2on-WeSUIP1jRa7u-IhL0ZSev54xTplL9kvD-8LYY4DrxGZDkqLg/exec', data)
+        .done(function (response) {
+            console.log("Server Response:", response);
+            
+            if (response.result === "error") {
+                $('#alert-wrapper').html(alert_markup('danger', response.message));
+            } else {
+                $('#alert-wrapper').html('');
+                $('#rsvp-modal').modal('show');
+            }
+        })
+        .fail(function () {
+            $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> There is some issue with the server.'));
+        });
+});
 
  
 
