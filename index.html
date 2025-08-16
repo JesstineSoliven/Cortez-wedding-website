@@ -149,6 +149,24 @@
     </div>
 </section>
 
+<!-- New Intro Section -->
+  <section class="bg-light p-4 rounded shadow-sm">
+    <h2>💌 Welcome to the Invitation Game!</h2>
+    <p class="lead">Spin the roleta to find out your destiny.  
+      Will you be invited, or will fate send you home? 😅</p>
+  </section>
+
+  <div class="container">
+    <h1 class="mb-4">🎉 Spin the Invitation Roleta</h1>
+    <div class="wheel-container">
+      <div class="pointer"></div>
+      <div class="wheel" id="wheel"></div>
+    </div>
+    <button class="btn btn-primary mt-4" onclick="spin()">Spin the Wheel</button>
+    <p id="result"></p>
+  </div>
+
+
 <section id="intro">
     <div class="container">
         <div class="row">
@@ -660,7 +678,50 @@ document.getElementById('play-music').addEventListener('click', function() {
 });
 
 
+const options = [
+      "🎊 Invited",
+      "😅 Not Invited",
+      "🍽 Dinner Only",
+      "🕺 After-Party Only",
+      "🎁 Bring a Gift First 😂",
+      "🎤 Sing a Song to Enter"
+    ];
 
+    const wheel = document.getElementById("wheel");
+
+    // Create slices dynamically
+    const sliceAngle = 360 / options.length;
+    options.forEach((option, i) => {
+      const slice = document.createElement("div");
+      slice.className = "slice";
+      slice.style.transform = `rotate(${i * sliceAngle}deg) skewY(${90 - sliceAngle}deg)`;
+      slice.style.background = i % 2 === 0 ? "#0d6efd" : "#dc3545";
+      slice.textContent = option;
+      wheel.appendChild(slice);
+    });
+
+    let spinning = false;
+
+    function spin() {
+      if (spinning) return;
+      spinning = true;
+
+      const result = document.getElementById("result");
+      const randIndex = Math.floor(Math.random() * options.length);
+      const sliceAngle = 360 / options.length;
+
+      // Rotate randomly with multiple spins
+      const spins = 5 * 360;
+      const finalRotation = spins + (360 - (randIndex * sliceAngle) - sliceAngle / 2);
+
+      wheel.style.transform = `rotate(${finalRotation}deg)`;
+
+      setTimeout(() => {
+        result.textContent = "Result: " + options[randIndex];
+        result.className = randIndex === 0 ? "text-success" : "text-danger";
+        spinning = false;
+      }, 4200);
+    }
 
 </script>
 </body>
