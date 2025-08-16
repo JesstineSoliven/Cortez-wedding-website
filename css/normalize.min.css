@@ -316,7 +316,7 @@ th {
       background-color: #e05f92;
     }
 				
-				   .wheel-container {
+				    .wheel-container {
       position: relative;
       margin: 0 auto;
       width: 80vw;
@@ -352,16 +352,18 @@ th {
       font-size: clamp(10px, 2.5vw, 16px);
       padding: 5px;
     }
+    /* Fixed pointer */
     .pointer {
       position: absolute;
-      top: -25px;
+      top: -30px;
       left: 50%;
       transform: translateX(-50%);
+      z-index: 10;
       width: 0; 
       height: 0; 
-      border-left: 15px solid transparent;
-      border-right: 15px solid transparent;
-      border-bottom: 25px solid #ffc107;
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-bottom: 30px solid #ffc107;
     }
     #result {
       font-size: clamp(16px, 3vw, 24px);
@@ -383,3 +385,4 @@ th {
         height: 90vw;
       }
     }
+			
