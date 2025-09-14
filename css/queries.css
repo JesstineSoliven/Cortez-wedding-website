@@ -65,7 +65,7 @@
     }
 
     nav ul li a {
-        color: #fff;
+        color: white;
         font-size: 25px;
         text-transform: uppercase;
         font-weight: 600;
@@ -81,6 +81,7 @@
 
     nav ul.primary-nav li {
         display: block;
+       
     }
 
     nav ul.member-actions li {
@@ -95,6 +96,7 @@
         margin: 0;
         padding: 0;
         text-align: center;
+         color:#000
     }
 
     nav ul.primary-nav li a {
