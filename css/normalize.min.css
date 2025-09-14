@@ -270,13 +270,13 @@ th {
     font-size: 1.2rem;
     padding: 12px 24px;
     border: none;
-    background: #d87093;
+    background:  #d37202;
     color: white;
     border-radius: 50px;
     cursor: pointer;
 }
 #play-music:hover {
-    background: #c06080;
+    background:  #d37202;
 }
 
  /* Basic popup styling */
@@ -305,7 +305,7 @@ th {
     #close-popup {
       margin-top: 20px;
       padding: 10px 20px;
-      background-color: #ff6fa5;
+      background-color: #d37202;
       color: white;
       border: none;
       border-radius: 8px;
@@ -313,7 +313,7 @@ th {
     }
 
     #close-popup:hover {
-      background-color: #e05f92;
+      background-color: #d37202;
     }
 				
 				    /* 🎨 Roleta Section (instead of body) */
