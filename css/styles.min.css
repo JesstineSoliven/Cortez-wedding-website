@@ -399,7 +399,56 @@ section .header {
     transition: all 300ms ease-in-out
 }
 
-.hero{min-height:750px;background:url("../img/Cover_Final.jpg") center center;-webkit-background-size:cover;-moz-background-size:cover;-o-background-size:cover;background-size:cover;position:relative}
+
+.hero {
+ min-height:750px;background:url("../img/cvff.jpg") center center;
+    -webkit-background-size:cover;-moz-background-size:cover;-o-background-size:cover;
+    background-size:cover;position:relative
+}
+
+/* Mobile devices (up to 767px) */
+@media (max-width: 767px) {
+  .hero {
+    min-height:750px;background:url("../img/cvff.jpg") center center;
+    -webkit-background-size:cover;-moz-background-size:cover;-o-background-size:cover;
+    background-size:cover;position:relative
+  }
+}
+
+
+
+
+/* Tablets (768px to 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .hero {
+    background:url("../img/Table-cover2.jpg") center center;
+    -webkit-background-size:cover;-moz-background-size:cover;-o-background-size:cover;
+    background-size:cover;position:relative
+  }
+}
+
+/* Laptops (1025px to 1440px) */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .hero {
+    min-height:750px;background:url("../img/Cover_Final.jpg") center center;
+    -webkit-background-size:cover;-moz-background-size:cover;-o-background-size:cover;
+    background-size:cover;position:relative
+  }
+}
+
+/* Large monitors (1441px and up) */
+@media (min-width: 1441px) {
+  .hero {
+    background:url("../img/Cover_Final.jpg") center center;
+    -webkit-background-size:cover;-moz-background-size:cover;-o-background-size:cover;
+    background-size:cover;position:relative
+  }
+}
+
+
+/* .hero{min-height:750px;background:url("../img/cvff.jpg") center center;
+    -webkit-background-size:cover;-moz-background-size:cover;-o-background-size:cover;
+    background-size:cover;position:relative} */
 .hero .down-arrow a{color:#fff}
 .hero h1{color:#fff;margin-bottom:40px}
 .hero p.intro{color:#fff;font-size:20px;font-weight:300;margin-bottom:80px}
